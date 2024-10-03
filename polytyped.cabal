@@ -23,10 +23,14 @@ name:               polytyped
 version:            0.1.0.0
 
 -- A short (one-line) description of the package.
--- synopsis:
+synopsis: Alternative to Data.Dynamic with added type safety.
 
 -- A longer description of the package.
--- description:
+description:
+    This package provides an alternative to `Data.Dynamic`.
+    It provides a way to store homogenous values similar to sum types,
+    without need to construct the type explicitly.
+    All types are stored in a type level list.
 
 -- The license under which the package is released.
 license:            BSD-3-Clause
@@ -59,7 +63,10 @@ library
     import:           warnings
 
     -- Modules exported by the library.
-    exposed-modules:  MyLib
+    exposed-modules:
+        Data.Polytyped
+        Data.Polytyped.Internal
+        Data.Polytyped.TypeLevel
 
     -- Modules included in this library but not exported.
     -- other-modules:
@@ -68,7 +75,7 @@ library
     -- other-extensions:
 
     -- Other library packages from which modules are imported.
-    build-depends:    base ^>=4.17.2.1
+    build-depends:    base
 
     -- Directories containing source files.
     hs-source-dirs:   src
