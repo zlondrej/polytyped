@@ -1,7 +1,6 @@
 {-# LANGUAGE AllowAmbiguousTypes #-}
 {-# LANGUAGE ConstraintKinds #-}
 {-# LANGUAGE DataKinds #-}
-{-# LANGUAGE DerivingStrategies #-}
 {-# LANGUAGE FlexibleContexts #-}
 {-# LANGUAGE FlexibleInstances #-}
 {-# LANGUAGE GADTs #-}
@@ -148,12 +147,12 @@ instance
 
 instance (Typeable t, Show t) => Show (Poly '[t]) where
   show a = case polycast @t a of
-    Right a' -> show a'
+    Right a' -> "Poly (" <> show (typeOf a') <> "; " <> show a' <> ")"
     Left a' -> absurd a'
 
 instance (Typeable t, Show t, Show (Poly (t1 : tn))) => Show (Poly (t : t1 : tn)) where
   show a = case polycast @t a of
-    Right a' -> show a'
+    Right a' -> "Poly (" <> show (typeOf a') <> "; " <> show a' <> ")"
     Left a' -> show a'
 
 -- Eq instances
