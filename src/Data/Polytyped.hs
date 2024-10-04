@@ -4,7 +4,9 @@ where
 import Data.Polytyped.Internal (
   Poly,
   PolyCast (..),
+  PolyFunctor (..),
   PolyMap (PolyMapFn, polymap),
+  fromPoly,
   rePoly,
   toPoly,
  )

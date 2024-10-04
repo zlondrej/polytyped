@@ -131,6 +131,26 @@ main =
       , testProperty "Can polymap to any unified type" $ \xs ->
           let polys = map primitiveToPoly xs
            in map polyToEithers polys === map primitiveToEithers xs
+      , testProperty "Can polyfmap to unify two types" $ \a ->
+          let (numeric :: Poly '[Word, Int]) = case a of
+                Left (int :: Int) -> toPoly int
+                Right (word :: Word) -> toPoly word
+              (intToWord :: Int -> Word) = fromIntegral . abs
+              justWord = Just $ case a of
+                Left int -> intToWord int
+                Right word -> word
+           in -- Keeping the type signature to verify that type was inferred correctly.
+              fromPoly @Word (polyfmap intToWord numeric :: Poly '[Word]) === justWord
+      , testProperty "Can polyfmap to convert a type" $ \a ->
+          let (numeric :: Poly '[Word, Int]) = case a of
+                Left (int :: Int) -> toPoly int
+                Right (word :: Word) -> toPoly word
+              (wordToString :: Word -> String) = show
+              maybeString = case a of
+                Left _ -> Nothing
+                Right word -> Just $ wordToString word
+           in -- Keeping the type signature to verify that type was inferred correctly.
+              fromPoly @String (polyfmap wordToString numeric :: Poly '[String, Int]) === maybeString
       ]
  where
   (a, b) @?== (c, d) =

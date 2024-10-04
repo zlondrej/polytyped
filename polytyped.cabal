@@ -24,14 +24,14 @@ name:            polytyped
 version:         0.1.0.0
 
 -- A short (one-line) description of the package.
-synopsis:        Alternative to `Dynamic` with added type safety.
+synopsis:        Alternative to `Dynamic` with type guarantees
 
 -- A longer description of the package.
 description:
-  This package provides an alternative to `Data.Dynamic`.
-  It provides a way to store homogenous values similar to sum types,
-  without need to construct the type explicitly.
-  All types are stored in a type level list.
+  With `Dynamic` you can store a value of any type in the same container,
+  but you have to track manually what kind of types can possibly be inside.
+  `Poly` carries this information in a type level list, so you can be sure that
+  it's container contains a value of one of those types.
 
 -- The license under which the package is released.
 license:         BSD-3-Clause

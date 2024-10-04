@@ -10,7 +10,7 @@ import Data.Kind
 import Data.Type.Bool
 import GHC.TypeError
 
--- | Requires that the type is one of the types in the list.
+-- | Requires that the type @t@ is one of the types in the list @ts@.
 type OneOf a (ts :: [Type]) =
   If
     (IsElem a ts)
@@ -21,16 +21,18 @@ type OneOf a (ts :: [Type]) =
         )
     )
 
+-- | Checks if the type @t@ is present in the list @ts@.
 type family IsElem (t :: Type) (ts :: [Type]) :: Bool where
   IsElem t '[] = 'False
   IsElem t (t : ts) = 'True
   IsElem t (t1 : ts) = IsElem t ts
 
+-- | Checks if the type list @sub@ is subset of the type list @super@.
 type family IsSubsetOf (sub :: [Type]) (super :: [Type]) :: Bool where
   IsSubsetOf '[] _ = 'True
   IsSubsetOf (s : ss) ts = IsElem s ts && IsSubsetOf ss ts
 
--- | Requires that the first list is a subset of the second list.
+-- | Requires that the type list @sub@ is subset of the type list @super@.
 type family SubsetOf (sub :: [Type]) (super :: [Type]) :: Constraint where
   SubsetOf sub super =
     If
@@ -42,10 +44,12 @@ type family SubsetOf (sub :: [Type]) (super :: [Type]) :: Constraint where
           )
       )
 
+-- | Checks if the types in the list are unique.
 type family IsUnique (ts :: [Type]) :: Bool where
   IsUnique '[] = 'True
   IsUnique (t : ts) = (Not (IsElem t ts)) && IsUnique ts
 
+-- | Requires that the types in the list are unique.
 type family Unique (ts :: [Type]) :: Constraint where
   Unique ts =
     If
@@ -96,6 +100,7 @@ type ReplaceElem (t :: Type) (u :: Type) (ts :: [Type]) =
         )
     )
 
+-- | Just like `ReplaceElem`, but without the check for the type presence.
 type family ReplaceElem' (t :: Type) (u :: Type) (ts :: [Type]) :: [Type] where
   ReplaceElem' t u '[] = '[]
   ReplaceElem' t u (t : ts) = u : ts
