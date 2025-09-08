@@ -15,7 +15,7 @@ main = do
 ```
 
 `Poly` carries this information in a type level list, so you can be sure that
-it's container contains a value of one of those types.
+it contains a value of one of the listed types.
 
 ```hs
 import Data.Polytyped
@@ -29,5 +29,35 @@ main = do
 ```
 
 `Poly` supplies a similar function as custom sum-type without actually needing to define
-the type. However unlike sum-types, you can't have two different constructors that contain
-the same type.
+the type. However unlike sum-types, `Poly` doesn't allow specifying same type multiple times.
+Representing type such as `SumOp` is not possible.
+
+```hs
+data SumOp
+  = Add Int
+  | Sub Int
+```
+
+You will need to help the type system by using tagged types:
+
+```hs
+
+import Data.Tagged
+
+data AddOp
+data SubOp
+
+-- Representation of `SumOp` sum-type with `Poly` and tagged types.
+type MyTaggedPoly = Poly '[Tagged AddOp Int, Tagged SubOpInt]
+```
+
+or newtype wrappers:
+
+```hs
+
+newtype AddOp = Add Int
+newtype SubOp = Sub Int
+
+-- Representation of `SumOp` sum-type with `Poly` and newtypes.
+type MyNewtypePoly = Poly '[AddOp, SubOp]
+```

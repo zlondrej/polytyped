@@ -18,9 +18,9 @@ name:            polytyped
 -- See the Haskell package versioning policy (PVP) for standards
 -- guiding when and how versions should be incremented.
 -- https://pvp.haskell.org
--- PVP summary:     +-+------- breaking API changes
---                  | | +----- non-breaking API additions
---                  | | | +--- code changes with no API change
+-- PVP summary:    +-+------- breaking API changes
+--                 | | +----- non-breaking API additions
+--                 | | | +--- code changes with no API change
 version:         0.1.0.0
 
 -- A short (one-line) description of the package.
@@ -44,6 +44,7 @@ author:          Ondřej Janošík
 
 -- An email address to which users can send suggestions, bug reports, and patches.
 maintainer:      j.ondra14@gmail.com
+tested-with:     GHC ==9.6.7 || ==9.8.4 || ==9.10.2 || ==9.12.2
 
 -- A copyright notice.
 -- copyright:
