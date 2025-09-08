@@ -33,8 +33,8 @@ description:
   `Poly` carries this information in a type level list, so you can be sure that
   it's container contains a value of one of those types.
 
-homepage: https://github.com/zlondrej/polytyped
-bug-reports: https://github.com/zlondrej/polytyped/issues
+homepage:        https://github.com/zlondrej/polytyped
+bug-reports:     https://github.com/zlondrej/polytyped/issues
 
 -- The license under which the package is released.
 license:         BSD-3-Clause
@@ -47,12 +47,7 @@ author:          Ondřej Janošík
 
 -- An email address to which users can send suggestions, bug reports, and patches.
 maintainer:      j.ondra14@gmail.com
-tested-with:
-  GHC ==9.4.8
-   || ==9.6.7
-   || ==9.8.4
-   || ==9.10.2
-   || ==9.12.2
+tested-with:     GHC ==9.4.8 || ==9.6.7 || ==9.8.4 || ==9.10.2 || ==9.12.2
 
 -- A copyright notice.
 -- copyright:
@@ -60,7 +55,9 @@ category:        Data
 build-type:      Simple
 
 -- Extra doc files to be distributed with the package, such as a CHANGELOG or a README.
-extra-doc-files: CHANGELOG.md
+extra-doc-files:
+  CHANGELOG.md
+  README.md
 
 -- Extra source files to be distributed with the package, such as examples, or a tutorial module.
 -- extra-source-files:
