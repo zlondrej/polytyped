@@ -1,6 +1,5 @@
 name: Test on multiple GHC versions
 
-
 on:
   pull_request:
   push:
@@ -43,7 +42,8 @@ jobs:
       - name: Cache
         uses: actions/cache@v4
         with:
-          path: ${{ steps.setup-haskell.outputs.cabal-store }}/dist-newstyle
+          path: ${{ steps.setup-haskell.outputs.cabal-store }}
+                dist-newstyle
           key: ${{ runner.os }}-ghc-${{ matrix.ghc }}-cabal-${{ hashFiles('**/plan.json') }}
           restore-keys: ${{ runner.os }}-ghc-${{ matrix.ghc }}-
       - name: Build
@@ -55,5 +55,6 @@ jobs:
       - name: Save cache
         uses: actions/cache/save@v4
         with:
-          path: ${{ steps.setup-haskell-cabal.outputs.cabal-store }}/dist-newstyle
+          path: ${{ steps.setup-haskell-cabal.outputs.cabal-store }}
+                dist-newstyle
           key: ${{ runner.os }}-ghc-${{ matrix.ghc }}-cabal-${{ hashFiles('./.plan.json') }}
