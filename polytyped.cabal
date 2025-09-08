@@ -33,6 +33,9 @@ description:
   `Poly` carries this information in a type level list, so you can be sure that
   it's container contains a value of one of those types.
 
+homepage: https://github.com/zlondrej/polytyped
+bug-reports: https://github.com/zlondrej/polytyped/issues
+
 -- The license under which the package is released.
 license:         BSD-3-Clause
 
